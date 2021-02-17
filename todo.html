@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <title>Title</title>
+  </head>
+  <style>
+    .disable {
+      text-decoration: line-through;
+    }
+  </style>
+  <body>
+    <div class="container" id="app">
+      <div class="my-4" v-for="todo, index in Todos">
+        <input type="text" v-model="todo.title" v-if="todo.edit" />
+        <h1 v-else :class="todo.status ? 'disable':''">{{ todo.title }}</h1>
+
+        <div>
+          <button class="btn" @click="removeTodo(index)">
+            <i class="fas fa-recycle"></i>
+          </button>
+
+          <button class="btn" @click="editTodo(index)">
+            <i class="fas fa-edit"></i>
+          </button>
+
+          <button class="btn" @click="doneTodo(index)">
+            <i class="fas fa-check"></i>
+          </button>
+        </div>
+      </div>
+
+      <input type="text" class="form-control" v-model="newTodo.title" />
+      <button class="btn btn-danger my-3" @click="addTodo" @keyup.enter="addTodo">
+        Add New
+      </button>
+    </div>
+
+    <script src="todo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.min.js"></script>
+  </body>
+</html>
